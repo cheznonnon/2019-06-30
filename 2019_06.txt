@@ -1,0 +1,428 @@
+
+
+----------==========----------==========----------==========----------
+
+
+"Eat Your Own Catfood."
+
+
+----------==========----------==========----------==========----------
+
+
+Change Log
+
+
+2019/07/04 : Release #4
+
+
+BUGFIX
+
+
+	win32/win_txtbox.c
+		ONELINE : highlight
+			OLD : inaccurate in some cases
+			NEW : fixed
+
+	CatPad
+		Search : TxtBox : horizontal scroll
+			OLD : not reset in some cases
+			NEW : fixed
+		WinVista/7 : DWM is ON : maximized at startup
+			OLD : glitch
+			NEW : fixed
+	Nonnon Paint
+		non-DWM environment : Resizer : when combobox is closed
+			OLD : scrollbars disappear
+			NEW : fixed
+
+
+----------==========----------==========----------==========----------
+
+
+Change Log
+
+
+2019/07/02 : Release #3 : recall for regression and some fixes
+
+
+BUGFIX
+
+
+	win32/win_combobox.c
+		while drag a thumb : TxtBox area : hover
+			OLD : inputtable
+			NEW : fixed
+	win32/win_scrollbar.c
+		vertical scroll : graphics
+			OLD : inaccurate
+			NEW : fixed
+	win32/win_txtbox.c
+		ONELINE : High-DPI
+			OLD : not vertically centered
+			NEW : fixed
+
+	Marie
+		Jukebox : window
+			OLD : broken
+			NEW : fixed
+
+
+----------==========----------==========----------==========----------
+
+
+Change Log
+
+
+2019/07/01 : Release #2 : recall for regression
+
+
+BUGFIX
+
+
+	neutral/bmp.c
+		n_bmp_flush() : multi-thread : when 4 cores or more
+			OLD : possibility of crash
+			NEW : temporary disabled
+
+
+----------==========----------==========----------==========----------
+
+
+Change Log
+
+
+2019/06/30
+
+
+BUGFIX
+
+
+	neutral/bmp.c
+		n_bmp_flush() : multi-thread
+			OLD : inaccurate behavior
+			NEW : fixed
+			[x] : NEW_FEATURE @ 2019/06/20
+
+	win32/win_checkbox.c
+		n_win_check_draw() : Classic Style : disabled graphic
+			OLD : inaccurate
+			NEW : fixed
+	win32/win_radiobutton.c
+		n_win_radio_draw() : Classic Style : disabled graphic
+			OLD : inaccurate
+			NEW : fixed
+	win32/win_scrollbar.c
+		STYLE_CLASSIC, _FLAT : when an arrowbutton is disabled
+			OLD : hover is acceptable
+			NEW : fixed
+
+	Attrib GUI
+		at startup
+			OLD : enabled state in a moment
+			NEW : fixed
+		Clasic Style : disabled checkboxes : graphic
+			OLD : inaccurate
+			NEW : fixed
+	CatPaed
+		WinVista/7 : DWM is ON : search field : highlight
+			OLD : draw error when you press Ctrl+F
+			NEW : fixed
+	hunyapoyo2
+		x64 : high-DPI : window size
+			OLD : insufficient
+			NEW : fixed
+	hunyapoyo3
+		x64 : high-DPI : window size
+			OLD : insufficient
+			NEW : fixed
+	Marie
+		at exit
+			OLD : black screen appears in some cases
+			NEW : fixed
+		Resampler
+			OLD : inaccurate size in some cases
+			NEW : fixed
+	Nonnon Freecell
+		card size
+			OLD : insufficient in some cases
+			NEW : fixed
+	Nonnon Paint
+		WinXP or earlier : when a tool window hovered on a main window
+			OLD : tearing
+			NEW : fixed
+		WinVista/7 : DWM is ON
+			OLD : foundation images disappear at the first deal
+			NEW : fixed
+	Nonnon Spider
+		card size
+			OLD : insufficient in some cases
+			NEW : fixed
+
+
+NEW_FEATURE
+
+
+	neutral/bmp.c
+	neutral/bmp/*.c
+		multi-thread
+			NEW : re-factored
+			[!] : for easy to read
+			[!] : full-scalable with many cores
+	neutral/bmp/_fastcopy.c
+		n_bmp_fastcopy()
+			NEW : multi-thread available
+	neutral/bmp/matrix.c
+		n_bmp_matrix_rotate()
+			NEW : multi-thread available
+	neutral/bmp/transform.c
+		n_bmp_smoothshrink()
+			NEW : multi-thread available
+	neutral/posix.c
+		n_posix_cpu_count()
+			NEW : processor core count
+		n_posix_multithread_onoff()
+			NEW : multi-thread checker
+			[!] : true when Win2000 or later and core count is not 1
+
+	Nonnon Paint
+		Canvas : renderer
+			NEW : multi-thread available
+	OrangeCat
+		Item Loader
+			NEW : faster than older
+
+
+----------==========----------==========----------==========----------
+
+
+Change Log
+
+
+2019/06/20
+
+
+BUGFIX
+
+
+	game/transition.c
+		n_game_transition() : N_GAME_TRANSITION_NOTHING
+			OLD : offset is not used
+			NEW : fixed
+
+	neutral/bmp/color.c
+		n_bmp_blend_alpha2ratio() : multi-thread mode
+			OLD : inaccurate
+			NEW : fixed
+			[!] : behavior is changed
+	neutral/txt.c
+		n_txt_load_internal()
+			OLD : debug code remains
+			NEW : fixed
+
+	win32/win/set.c
+		n_win_set() : High-DPI : 175%
+			OLD : inaccurate
+			NEW : fixed
+	win32/win_combobox.c
+		when a window is moved while a popup is appeared
+			OLD : misbehave
+			NEW : fixed
+	win32/win_scrollbar.c
+		Visual Style : shaft hover
+			OLD : not supported / same as thumb hover
+			NEW :     supported
+		hover : thumb to arrow buttons
+			OLD : hover state remains
+			NEW : fixed
+	win32/win_txtbox.c
+		undo : ONELINE
+			OLD : crash at exit
+			NEW : fixed
+			[!] : n_win_txtbox_menu_undo() causes
+		n_win_txtbox_menu_undo()
+			OLD : crash
+			NEW : fixed
+			[?] : heap corruption in optimized code
+		WM_IME_REQUEST : IMR_RECONVERTSTRING : when multi-line is selected
+			OLD : crash
+			NEW : fixed
+		undo
+			OLD : scrollbar is disabled in some cases
+			NEW : fixed
+		undo : at the first time
+			OLD : On
+			NEW : Off
+
+	CatPad
+		Win9x : when a new file is dropped : scrollbar
+			OLD : new thumb size is not set
+			NEW : fixed
+		Search Field : Undo
+			OLD : crash in some cases
+			NEW : fixed
+			[!] : when a text changes shorter
+			[!] : n_win_txtbox_menu_undo() causes
+	Marie
+		WinXP or earlier : when the both scrollbar appear : corner
+			OLD : tearing
+			NEW : fixed
+		Resampler : when a new file is dropped
+			OLD : draw by original size for a moment
+			NEW : fixed
+	Nonnon Attrib GUI
+		file name field
+			OLD : when focused, not released
+			NEW : fixed
+	Nonnon Freecell
+		background : bottom 1px line
+			OLD : inaccurate
+			NEW : fixed
+	Nonnon Paint
+		Resizer
+			OLD : heavy flicker
+			NEW : fixed
+		WinXP or earlier : when the both scrollbar appear : corner
+			OLD : tearing
+			NEW : fixed
+		High-DPI : 175% : window size
+			OLD : inaccurate
+			NEW : fixed
+			[!] : win32/win/set.c causes
+	Nonnon Spider
+		background : bottom 1px line
+			OLD : inaccurate
+			NEW : fixed
+
+
+NEW_FEATURE
+
+
+	game/transition.c
+		n_game_transition() : N_GAME_TRANSITION_FADE
+			NEW : multi-thread available
+
+	neutral/bmp/draw.c
+		n_bmp_gradient()
+			NEW : multi-thread available
+			[!] : 190% faster than older
+		n_bmp_box()
+			NEW : multi-thread available
+	neutral/bmp/filter.c
+		n_bmp_blendcopy()
+			NEW : multi-thread available
+	neutral/bmp/transform.c
+		n_bmp_resampler()
+			NEW : multi-thread available
+	neutral/bmp.c
+		n_bmp_flush()
+			NEW : multi-thread available
+
+	win32/win_combobox.c
+		frame renderer
+			NEW : faster than older
+
+	Nonnon Freecell
+		pile redraw
+			NEW : multi-thread available
+		foundation image
+			NEW : re-tuned
+	Nonnon Spider
+		pile redraw
+			NEW : multi-thread available
+		foundation image
+			NEW : re-tuned
+
+
+----------==========----------==========----------==========----------
+
+
+Change Log
+
+
+2019/06/10
+
+
+BUGFIX
+
+
+	all
+		WM_LBUTTONDBLCLK : SetCapture()
+			OLD : not used : UI misbehaves in some cases
+			NEW : fixed
+			[x] : BUGFIX @ 2019/05/30
+	win32/win_combobox.c
+		arrow button
+			OLD : misbehave
+			NEW : fixed
+		WinXP or earlier
+			OLD : other controls disappear when closed
+			NEW : fixed
+	win32/win_txtboc.c
+		paste : scrollbar
+			OLD : misbehave
+			NEW : fixed
+		WinXP or earlier : when another window is hovered
+			OLD : flickering
+			NEW : fixed
+
+	CatPad
+		TxtBox : flash window emulator
+			OLD : not working in some cases
+			NEW : fixed
+	nmixer
+		Text
+			OLD : hard-coded rgb( 0, 200, 255 )
+			NEW : same as scrollbar color
+	Nonnon Freecell
+		when DWM is ON
+			OLD : card edge is not smooth
+			NEW : fixed
+	Nonnon Spider
+		when DWM is ON
+			OLD : card edge is not smooth
+			NEW : fixed
+	OrangeCat
+		when scroll thumb is minimal size
+			OLD : thumb is over an item area
+			NEW : fixed
+			[!] : a complicated patch is implemented
+
+
+NEW_FEATURE
+
+
+	win32/win_combobox.c
+		style
+			OLD : classic-like etched border
+			NEW : use Nonnon Original border
+	win32/win_scrollbar.c
+		Version 4.0
+			NEW : released
+			[!] : OrangeCat mode is implemented
+		renamed
+			OLD : N_WIN_SCROLLBAR_OPTION_NO_PATCH
+			NEW : N_WIN_SCROLLBAR_OPTION_RECALC_UNIT_MAX
+	win32/win_sizegrip.c
+		n_win_sizegrip_status_gradient()
+			NEW : gradient renderer
+		n_win_sizegrip_proc()
+			OLD : function
+			NEW : macro for n_win_sizegrip_proc_internal()
+		n_win_sizegrip_proc_statusbar()
+			NEW : macro for n_win_sizegrip_proc_internal()
+			[!] : for XP-like gradient
+	win32/win_smallbutton.c
+		n_win_smallbutton_is_doubleclicked()
+			NEW : doubleclick checker
+	win32/win_statusbar_ownerdraw.c
+		WinXP : gradient
+			NEW : bottom side available
+	win32/win_txtbox.c
+		renamed
+			OLD : N_WIN_TXTBOX_STYLE_ETCHBDR
+			NEW : N_WIN_TXTBOX_STYLE_CMB_BDR
+			[!] : behavior is changed
+
+
+----------==========----------==========----------==========----------
+
